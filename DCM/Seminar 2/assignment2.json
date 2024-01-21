@@ -1,0 +1,91 @@
+{"mental_health_data":
+  {"record":
+    [
+      {
+      "Age": 25,
+      "Gender": "Female",
+      "Relationship_Status": "Single",
+      "Occupation": "Student",
+      "Organization": "University",
+      "Social_Media_Usage": "Yes",
+      "Social_Media_Platforms": "Facebook, Instagram",
+      "Daily_Social_Media_Time": "Between 2 and 3 hours",
+      "Frequency_Usage_No_Purpose": 5,
+      "Frequency_Distracted": 3,
+      "Restless_Without_Social_Media": 2,
+      "Distractibility_Scale": 5,
+      "Difficulty_Concentrating_Scale": 5,
+      "Frequency_Depressed_Scale": 5,
+      "Sleep_Issues_Scale": 5
+      },
+      {
+      "Age": 25,
+      "Gender": "Female",
+      "Relationship_Status": "Single",
+      "Occupation": "Student",
+      "Organization": "University",
+      "Social_Media_Usage": "Yes",
+      "Social_Media_Platforms": "Facebook, Instagram",
+      "Daily_Social_Media_Time": "Between 2 and 3 hours",
+      "Frequency_Usage_No_Purpose": 5,
+      "Frequency_Distracted": 3,
+      "Restless_Without_Social_Media": 2,
+      "Distractibility_Scale": 5,
+      "Difficulty_Concentrating_Scale": 5,
+      "Frequency_Depressed_Scale": 5,
+      "Sleep_Issues_Scale": 5
+      },
+      {
+      "Age": 25,
+      "Gender": "Female",
+      "Relationship_Status": "Single",
+      "Occupation": "Student",
+      "Organization": "University",
+      "Social_Media_Usage": "Yes",
+      "Social_Media_Platforms": "Facebook, Instagram",
+      "Daily_Social_Media_Time": "Between 2 and 3 hours",
+      "Frequency_Usage_No_Purpose": 5,
+      "Frequency_Distracted": 3,
+      "Restless_Without_Social_Media": 2,
+      "Distractibility_Scale": 5,
+      "Difficulty_Concentrating_Scale": 5,
+      "Frequency_Depressed_Scale": 5,
+      "Sleep_Issues_Scale": 5
+      },
+      {
+      "Age": 25,
+      "Gender": "Female",
+      "Relationship_Status": "Single",
+      "Occupation": "Student",
+      "Organization": "University",
+      "Social_Media_Usage": "Yes",
+      "Social_Media_Platforms": "Facebook, Instagram",
+      "Daily_Social_Media_Time": "Between 2 and 3 hours",
+      "Frequency_Usage_No_Purpose": 5,
+      "Frequency_Distracted": 3,
+      "Restless_Without_Social_Media": 2,
+      "Distractibility_Scale": 5,
+      "Difficulty_Concentrating_Scale": 5,
+      "Frequency_Depressed_Scale": 5,
+      "Sleep_Issues_Scale": 5
+      },
+      {
+      "Age": 25,
+      "Gender": "Female",
+      "Relationship_Status": "Single",
+      "Occupation": "Student",
+      "Organization": "University",
+      "Social_Media_Usage": "Yes",
+      "Social_Media_Platforms": "Facebook, Instagram",
+      "Daily_Social_Media_Time": "Between 2 and 3 hours",
+      "Frequency_Usage_No_Purpose": 5,
+      "Frequency_Distracted": 3,
+      "Restless_Without_Social_Media": 2,
+      "Distractibility_Scale": 5,
+      "Difficulty_Concentrating_Scale": 5,
+      "Frequency_Depressed_Scale": 5,
+      "Sleep_Issues_Scale": 5
+      }
+    ]
+  }
+}

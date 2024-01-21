@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mental_health_data>
+    <record>
+        <Age>25</Age>
+        <Gender>Female </Gender>
+        <Relationship_Status>Single</Relationship_Status>
+        <Occupation>Student</Occupation>
+        <Organization>University</Organization>
+        <Social_Media_Usage>Yes</Social_Media_Usage>
+        <Social_Media_Platforms>Facebook, Instagram</Social_Media_Platforms>
+        <Daily_Social_Media_Time>Between 2 and 3 hours</Daily_Social_Media_Time>
+        <Frequency_Usage_No_Purpose>5</Frequency_Usage_No_Purpose>
+        <Frequency_Distracted>3</Frequency_Distracted>
+        <Restless_Without_Social_Media>2</Restless_Without_Social_Media>
+        <Distractibility_Scale>5</Distractibility_Scale>
+        <Difficulty_Concentrating_Scale>5</Difficulty_Concentrating_Scale>
+        <Frequency_Depressed_Scale>5</Frequency_Depressed_Scale>
+        <Sleep_Issues_Scale>5</Sleep_Issues_Scale>
+    </record>
+</mental_health_data>

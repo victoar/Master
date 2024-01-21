@@ -1,0 +1,6 @@
+Age,Gender,Relationship_Status,Occupation,Organization,Social_Media_Usage,Social_Media_Platforms,Daily_Social_Media_Time,Frequency_Usage_No_Purpose,Frequency_Distracted,Restless_Without_Social_Media,Distractibility_Scale,Difficulty_Concentrating_Scale,Frequency_Depressed_Scale,Sleep_Issues_Scale
+21,Male,In a relationship,Student,University,1,"Facebook, Twitter, Instagram, YouTube, Discord, Reddit",Between 2 and 3 hours,5,3,2,5,5,5,5
+25,Female,In a relationship,Student,University,1,"Facebook, Instagram",Between 2 and 3 hours,5,3,2,5,5,5,5
+21,Female,In a relationship,Student,University,1,"Facebook, Twitter, Instagram, YouTube, Discord, Reddit",More than 5 hours,4,3,2,4,4,5,5
+22,Female,In a relationship,Student,University,1,"Facebook, Twitter, Instagram, YouTube, Discord, Pinterest, TikTok",Between 2 and 3 hours,4,4,2,3,3,3,4
+20,Male,In a relationship,Student,University,0,"Reddit, Pinterest",Less than an hour,1,1,1,1,1,1,1
