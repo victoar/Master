@@ -5,3 +5,5 @@ Welcome to the Data Science Master Documents repository! This repository serves 
 Feel free to explore, contribute, and collaborate! Your feedback and contributions are highly appreciated.
 
 Happy coding and data exploring!
+
+[LinkedIn account](https://www.linkedin.com/in/victor-stefan-iacob-943bb1182/).
