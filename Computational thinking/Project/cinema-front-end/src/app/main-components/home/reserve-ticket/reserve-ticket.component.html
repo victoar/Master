@@ -1,0 +1,87 @@
+<div class="main-content">
+  <div class="reserve-ticket-container" *ngIf="showFirstStep">
+    <div class="movie-info-container">
+      <h3>{{schedule.movie.title}}</h3>
+      <div class="info-row">
+        <div class="day-cell">
+          {{"Date: " + formatDate(schedule.day)}}
+        </div>
+
+        <div class="time-cell">
+          {{"Time: " + schedule.starttime}}
+        </div>
+
+        <div class="cinema-cell">
+          {{"Location: " + schedule.cinema.name}}
+        </div>
+
+        <div class="price-cell">
+          {{"Price: " + schedule.price + "lei"}}
+        </div>
+
+        <div class="director-cell">
+          {{"Director: " + schedule.movie.director}}
+        </div>
+
+        <div class="duration-cell">
+          {{"Duration: " + schedule.movie.duration + "min"}}
+        </div>
+
+        <div class="genre-cell">
+          {{"Genre: " + schedule.movie.genre}}
+        </div>
+      </div>
+    </div>
+
+    <hr class="break-line">
+
+    <br><br>
+
+    <h2>Personal information</h2>
+    <p>Please fill in the following inputs and proceed to the next step</p>
+
+    <div class="input-row">
+      <label>Name:</label>
+      <input [(ngModel)]="nameInput" placeholder="Name">
+    </div>
+
+    <div class="input-row">
+      <label>E-mail:</label>
+      <input [(ngModel)]="emailInput" placeholder="E-mail">
+    </div>
+
+    <div class="input-row">
+      <label>Phone Number:</label>
+      <input [(ngModel)]="phoneNumberInput" placeholder="Phone Number">
+    </div>
+
+    <button (click)="onProceedClick()">Proceed</button>
+
+  </div>
+
+  <div class="reserve-ticket-container" *ngIf="showSecondStep">
+    <h2>Please select your seat</h2>
+    <hr class="break-line">
+
+    <div class="movie-legend-container">
+      <div class="row-line" *ngFor="let row of rows; let rowIndex = index">
+        <p style="margin-right: 8px">{{rowIndex + 1}}</p>
+        <div class="seat" *ngFor="let seat of columns; let seatIndex = index"
+             (click)="setTicketSeat(rowIndex, seatIndex)"
+             [ngClass]="{ 'occupied': isSeatOccupied(rowIndex, seatIndex),
+                          'available': !isSeatOccupied(rowIndex, seatIndex)}">
+          {{seatIndex + 1}}
+        </div>
+      </div>
+    </div>
+
+    <label>Seat row: {{selectedRow}}</label><br>
+    <label>Seat number: {{selectedColumn}}</label><br><br>
+
+    <button *ngIf="!showSuccessMessage" (click)="onReserveClick()">Reserve</button>
+    <button *ngIf="showSuccessMessage" routerLink="/schedule">Back to schedule</button>
+    <br><br>
+
+    <p *ngIf="showSuccessMessage">Your ticket was reserved successfully!</p>
+  </div>
+</div>

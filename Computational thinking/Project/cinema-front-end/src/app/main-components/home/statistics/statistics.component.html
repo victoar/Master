@@ -1,0 +1,86 @@
+<div class="main-content">
+  <div class="statistics-container">
+    <h2>Statistics</h2>
+    <hr class="break-line">
+
+    <label>The most watched movie is: <strong>{{mostWatchedMovie.title}}</strong> from <strong>{{mostWatchedMovie.cinema.name}}</strong></label>
+    <br><br>
+
+    <label>The most popular cinema is: <strong>{{mostVisitedCinema.name}}</strong></label>
+    <br><br>
+
+    <label>Descriptive statistics for tickets table:</label>
+    <table>
+      <thead>
+      <tr>
+        <th></th> <!-- Empty cell for left header -->
+        <th>Cinema ID</th>
+        <th>Client ID</th>
+        <th>Movie ID</th>
+        <th>Row</th>
+        <th>Seat Number</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><strong>{{ "25%" }}</strong></td>
+        <td>{{ statisticsData["25%"].cinemaid }}</td>
+        <td>{{ statisticsData["25%"].clientid }}</td>
+        <td>{{ statisticsData["25%"].movieid }}</td>
+        <td>{{ statisticsData["25%"].row }}</td>
+        <td>{{ statisticsData["25%"].seat_nr }}</td>
+      </tr>
+      <tr>
+        <td><strong>{{ "50%" }}</strong></td>
+        <td>{{ statisticsData["50%"].cinemaid }}</td>
+        <td>{{ statisticsData["50%"].clientid }}</td>
+        <td>{{ statisticsData["50%"].movieid }}</td>
+        <td>{{ statisticsData["50%"].row }}</td>
+        <td>{{ statisticsData["50%"].seat_nr }}</td>
+      </tr>
+      <tr>
+        <td><strong>{{ "75%" }}</strong></td>
+        <td>{{ statisticsData["75%"].cinemaid }}</td>
+        <td>{{ statisticsData["75%"].clientid }}</td>
+        <td>{{ statisticsData["75%"].movieid }}</td>
+        <td>{{ statisticsData["75%"].row }}</td>
+        <td>{{ statisticsData["75%"].seat_nr }}</td>
+      </tr>
+      <tr>
+        <td><strong>{{ "count" }}</strong></td>
+        <td>{{ statisticsData["count"].cinemaid }}</td>
+        <td>{{ statisticsData["count"].clientid }}</td>
+        <td>{{ statisticsData["count"].movieid }}</td>
+        <td>{{ statisticsData["count"].row }}</td>
+        <td>{{ statisticsData["count"].seat_nr }}</td>
+      </tr>
+      <tr>
+        <td><strong>{{ "max" }}</strong></td>
+        <td>{{ statisticsData["max"].cinemaid }}</td>
+        <td>{{ statisticsData["max"].clientid }}</td>
+        <td>{{ statisticsData["max"].movieid }}</td>
+        <td>{{ statisticsData["max"].row }}</td>
+        <td>{{ statisticsData["max"].seat_nr }}</td>
+      </tr>
+      <tr>
+        <td><strong>{{ "min" }}</strong></td>
+        <td>{{ statisticsData["min"].cinemaid }}</td>
+        <td>{{ statisticsData["min"].clientid }}</td>
+        <td>{{ statisticsData["min"].movieid }}</td>
+        <td>{{ statisticsData["min"].row }}</td>
+        <td>{{ statisticsData["min"].seat_nr }}</td>
+      </tr>
+      <tr>
+        <td><strong>{{ "std" }}</strong></td>
+        <td>{{ statisticsData["std"].cinemaid }}</td>
+        <td>{{ statisticsData["std"].clientid }}</td>
+        <td>{{ statisticsData["std"].movieid }}</td>
+        <td>{{ statisticsData["std"].row }}</td>
+        <td>{{ statisticsData["std"].seat_nr }}</td>
+      </tr>
+      </tbody>
+    </table>
+    <br><br>
+
+  </div>
+</div>

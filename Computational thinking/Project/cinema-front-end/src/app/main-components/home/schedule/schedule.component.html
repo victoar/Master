@@ -1,0 +1,45 @@
+<div class="main-content">
+  <div class="schedule-container">
+    <h2>Choose your favorite screening</h2>
+
+    <hr class="break-line">
+
+    <br>
+
+    <div class="cinema-filter">
+      <label for="cinemaFilter">Filter by cinema:</label>
+      <select id="cinemaFilter" [(ngModel)]="selectedCinema" name="cinema" (change)="onCinemaChange()">
+        <option [ngValue]="null" >All</option>
+        <option *ngFor="let cinema of cinemas" [ngValue]="cinema">{{ cinema.name }}</option>
+      </select>
+
+      <label style="margin-left: 30px">Filter by genre:</label>
+      <input [(ngModel)]="filterGenre" placeholder="Genre" (change)="onGenreFilterInput()">
+    </div>
+
+    <br>
+
+    <div class="movie-row" *ngFor="let schedule of schedules">
+      <div class="day-cell">
+        {{formatDate(schedule.day)}}
+      </div>
+
+      <div class="time-cell">
+        {{schedule.starttime}}
+      </div>
+
+      <div class="cinema-cell">
+        {{schedule.cinema.name}}
+      </div>
+
+      <div class="title-cell">
+        {{schedule.movie.title}}
+      </div>
+
+      <div class="button-cell">
+        <button (click)="goToReserveTicket(schedule)">Reserve</button>
+      </div>
+    </div>
+
+  </div>
+</div>

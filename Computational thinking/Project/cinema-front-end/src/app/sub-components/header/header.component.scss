@@ -1,0 +1,89 @@
+@import "../../../assets/styles/colors";
+
+.header-container{
+  position: fixed;
+  top: 0;
+  background-color: $color_primary;
+  height: 150px;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.header-padding{
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 60px 20px 60px;
+}
+
+.logo-container{
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+
+  img{
+    width: 100px;
+    height: auto;
+  }
+
+  h2{
+    position: absolute;
+    color: $color_dark_red;
+    font-family: Cinzel-Black;
+    top: 50px;
+    left: 42px;
+    font-size: 16px;
+    opacity: 70%;
+    margin: 0;
+  }
+
+  p {
+    position: relative;
+    color: $font_color_primary;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
+    margin: 0;
+  }
+}
+
+.border {
+  width: 30%;
+  border: 1px solid $font_color_primary;
+
+  &-top{
+    @extend .border;
+    margin-bottom: 0;
+  }
+
+  &-bottom{
+    @extend .border;
+    margin-left: 70%;
+    margin-top: 0;
+  }
+}
+
+nav a {
+  text-decoration: none;
+  color: $font_color_primary;
+  margin-left: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5em;
+  transition: color 0.3s ease-in-out;
+  opacity: 0.8;
+}
+
+nav a:hover {
+  text-decoration: none;
+  color: $color_golden_yellow;
+}
+
+.active {
+  font-weight: bold;
+}

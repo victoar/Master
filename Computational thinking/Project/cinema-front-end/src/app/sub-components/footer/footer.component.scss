@@ -1,0 +1,26 @@
+@import "../../../assets/styles/colors";
+
+.footer-container{
+  height: 80px;
+  bottom: 0;
+  background-color: #001F3F;
+  width: 100%;
+  position: relative;
+}
+
+.footer-content {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  color: $font_color_primary;
+  padding: 0 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+
+  p{
+    margin: 0;
+    font-size: 0.8em;
+    position: relative;
+  }
+}
