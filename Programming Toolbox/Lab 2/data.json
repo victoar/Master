@@ -1,0 +1,132 @@
+{
+  "FIRST_NAME": "Victor-Stefan",
+  "LAST_NAME": "Iacob",
+  "HOME": {
+    "TITLE": "Hi !",
+    "PARAGRAPH_1": "My name is Victor-Stefan Iacob and yes you guessed it... I am a programmer.",
+    "PARAGRAPH_2": "I am still a student in my first year of Data Science at Babes-Bolyay University in Cluj-Napoca.",
+    "PARAGRAPH_3": "In 2023, I have completed my current highest academic level: the Bachelor's Degree in Computer Science at the same university.",
+    "PARAGRAPH_4": "Since I was a child, I really started to enjoy technology.",
+    "PARAGRAPH_5": "Years later, I got my first job as a software developer and yeah.. my back hurts after just 2 years..."
+  },
+  "PERSONAL_INFO": {
+    "EDUCATION": {
+      "ENTRY_1": {
+        "TITLE": "Master's Degree in Data Science (2023-present)",
+        "SUBTITLE": "Babes-Bolyai University, Cluj-Napoca",
+        "DESCRIPTION": [
+          "Ability to provide adequate data analysis for decision-making problems",
+          "Programming skills necessary to extract data from various sources of information",
+          "Ability to approach problems from different angles and to be aware of complementarities in knowledge on interdisciplinary teams",
+          "Acquire skills needed to transform large amounts of information into complex projects, by using a wide range of quantitative and qualitative methods"
+        ]
+      },
+      "ENTRY_2": {
+        "TITLE": "Bachelor's Degree in Computer Science (2020-2023)",
+        "SUBTITLE": "Babes-Bolyai University, Cluj-Napoca",
+        "DESCRIPTION":  [
+          "Good programming skills in high-level languages",
+          "Abilities to develop and maintain software systems",
+          "Abilities to design and manage database systems",
+          "Abilities to design and administer computer networks",
+          "Ability to analyze, synthesize and model phenomena and processes from various fields (economy, science, research, education) using adequate mathematical, statistical, computational and computer science methods",
+          "Ability to use and maintain educational software for primary education and gymnasium"
+        ]
+      },
+      "ENTRY_3": {
+        "TITLE": "High-school Diploma (2016-2020)",
+        "SUBTITLE": "Traian Lalescu National College, Hunedoara",
+        "DESCRIPTION": [
+          "Strong understanding of fundamental mathematical concepts, including algebra, geometry, trigonometry, and calculus",
+          "Proficiency in problem-solving techniques, logical reasoning, and critical thinking skills",
+          "Ability to apply mathematical concepts to real-world scenarios and analyze mathematical models",
+          "Familiarity with computer programming language (C++)",
+          "Ability to build efficient algorithms in order solve different problems",
+          "Proficiency in using productivity software such as Microsoft Office",
+          "Skills in information retrieval and research using digital resources",
+          "Adaptability and willingness to learn new technologies and methodologies"
+        ]
+      }
+    },
+    "WORK_EXPERIENCE": {
+      "ENTRY_1": {
+        "TITLE": "Full-Stack Developer (Feb 2022 - present)",
+        "SUBTITLE": "ZYNK Software, Cluj-Napoca",
+        "DESCRIPTION": [
+          "Developing solutions for both back-end and front-end",
+          "Specializing in Java Spring Boot and Angular TypeScript, providing seamless communication between both ends using RESTful APIs",
+          "Ensuring UI experience is user-friendly by implementing responsive web designs using CSS/SCSS",
+          "Experience in SQL with PostgreSQL",
+          "Experience in NoSQL with Cassandra",
+          "Gaining experience in debugging and fixing bugs",
+          "Organising tasks in Jira",
+          "Code uploaded and reviewed using Gitlab"
+        ]
+      }
+    },
+    "PROJECTS": {
+      "ENTRY_1": {
+        "TITLE": "ViCarGo",
+        "SUBTITLE": "Peer-To-Peer Car Sharing Concept, implemented in a Mobile Application using Ionic",
+        "DESCRIPTION": [
+          "The mobile application leverages modern technologies and user-friendly interfaces to foster a seamless interaction within the sharing community. By harnessing the power of smartphones' connectivity and location services, users can effortlessly identify the most suitable car that aligns with their preferences.",
+          "If you would like to know more about my Bachelor Thesis, I invite you to open the link below or feel free to contact me on LinkedIn."
+          ],
+        "URL": "https://github.com/victoar/ViCarGo"
+      },
+      "ENTRY_2": {
+        "TITLE": "VIC - Virtual Information for Cinemas",
+        "SUBTITLE": "Backend: Python / Frontend: Angular",
+        "DESCRIPTION": [
+          "It is an app designed for cinemas around the city which gather all the movies in one place.",
+          "Still a prototype, but it has some nice designed built in with the help of Angular attributes and scss.",
+          "Users can reserve their seat by inputting name, phone number and email address.",
+          "Movies can be filtered by cinemas or by genre."
+        ],
+        "URL": "https://github.com/victoar/Master/tree/main/Computational%20thinking/Project/cinema-front-end"
+      }
+    }
+  },
+  "HOBBIES": {
+    "MUSIC": {
+      "TITLE": "Music",
+      "DESCRIPTION": "As a music enthusiast, I like to go to big concerts and listen to my favorite artists live. From repeating lyrics in the shower, I had never thought that I was going to listen to The Weeknd live, but I had the opportunity to see him last year and it was amazing.",
+      "IMG_LIST": [
+        "music-1.jpg",
+        "music-2.jpg",
+        "music-3.jpg",
+        "music-4.jpg"
+      ]
+    },
+    "SWIMMING": {
+      "TITLE": "Swimming",
+      "DESCRIPTION": "Swimming is a passion of mine since I was a little kid. Until 2018, I used to go to the biggest swimming competitions in Romania and collected over 170 medals in total. In 2017, I had the opportunity to represent Romania at European Youth Olympic Festival.",
+      "IMG_LIST": [
+        "swimming-1.jpg",
+        "swimming-2.jpg",
+        "swimming-3.jpg",
+        "swimming-4.jpg"
+      ]
+    },
+    "SKIING": {
+      "TITLE": "Skiing",
+      "DESCRIPTION": "It's strange because at first, skiing was so scary and I didn't like it at all. But, with the help of my friends I managed to get to the bottom of the slope and I have never missed my yearly ski vacation since.",
+      "IMG_LIST": [
+        "skiing-1.jpg",
+        "skiing-2.jpg",
+        "skiing-3.jpg",
+        "skiing-4.JPG"
+      ]
+    },
+    "TRAVELLING": {
+      "TITLE": "Travelling",
+      "DESCRIPTION": "There is not much to talk about in here. Get the salary -> Plan the next trip -> Enjoy it -> Repeat :)",
+      "IMG_LIST": [
+        "travel-1.JPG",
+        "travel-2.jpg",
+        "travel-3.jpg",
+        "travel-4.jpg"
+      ]
+    }
+  }
+}
