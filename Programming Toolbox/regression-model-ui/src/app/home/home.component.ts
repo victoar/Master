@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {animate, AUTO_STYLE, state, style, transition, trigger} from '@angular/animations';
 import {ApiControllerService} from '../services/api-controller.service';
+import {$e} from 'codelyzer/angular/styles/chars';
 
 const DEFAULT_DURATION = 500;
 
@@ -24,30 +25,55 @@ export class HomeComponent implements OnInit {
   isFirstColumnsOpen: boolean = false;
   isLastColumnsOpen: boolean = false;
   isValuesDescriptionOpen: boolean = false;
+  isDatasetCleaningOpen: boolean = false;
+  isTransformOpen: boolean = false;
+  isPreprocessingOpen: boolean = false;
   isPredictionOpen: boolean = false;
 
   dbRows;
   dbCols;
+  newDbRows;
+  newDbCols;
+  public trainModelResponse: string = '';
+  public headers: string[] = [];
+  public descriptionHeaders: string[] = [];
+  public selectedFeatures: { [key: string]: boolean } = {};
+  public selectedFeaturesList: string[] = [];
+  public inputFeatures: { [key: string]: any } = {};
+  public selectedTarget: string | null = null;
+  public selectedAlgorithm: string = 'regression';
+  public selectedAlgorithmForPredicting: string = 'regression';
   public columnInfoList: ColumnInfo[] = [];
   public rowsNumberForTop: number;
   public rowsNumberForTail: number;
   public firstRowsList: any[] = [];
   public lastRowsList: any[] = [];
   public descriptionsList: any[] = [];
-  public engineSize: number;
-  public cylinders: number;
-  public fuelConsumption: number;
   public predictionResult: string = '';
+  public clustersNumber;
+  file: File | null = null;
 
   constructor(private apiController: ApiControllerService) { }
 
   ngOnInit() {
-    this.apiController.getDatabaseData().subscribe(res => {
-      this.dbCols = res.columns;
-      this.dbRows = res.rows;
-    });
+    // this.apiController.getDatabaseData().subscribe(res => {
+    //   this.dbCols = res.columns;
+    //   this.dbRows = res.rows;
+    // });
   }
 
+  onFileChange($event: Event) {
+    this.file = $event.target['files'][0];
+  }
+
+  uploadFile() {
+    this.apiController.uploadDataset(this.file).subscribe(res => {
+      this.dbCols = res.columns;
+      this.dbRows = res.rows;
+      this.headers = res.headers;
+      this.resetValues();
+    });
+  }
 
   loadDatasetDescription() {
     this.apiController.getColumnData().subscribe(res => {
@@ -67,7 +93,8 @@ export class HomeComponent implements OnInit {
     }
 
     this.apiController.getFirstRows(this.rowsNumberForTop).subscribe(res => {
-      this.firstRowsList = res;
+      console.log(res);
+      this.firstRowsList = res.data;
     });
   }
 
@@ -83,36 +110,112 @@ export class HomeComponent implements OnInit {
     }
 
     this.apiController.getLastRows(this.rowsNumberForTail).subscribe(res => {
-      this.lastRowsList = res;
+      this.lastRowsList = res.data;
     });
   }
 
   loadDescription() {
     this.apiController.getDescriptions().subscribe(res => {
-      this.descriptionsList = res;
-      console.log(res);
+      this.descriptionHeaders = res.headers;
+      this.descriptionsList = res.data;
     });
   }
 
+  cleanDataset() {
+    this.apiController.cleanDatasetUsingGet().subscribe(res => {
+      this.newDbRows = res.rows;
+      this.newDbCols = res.columns;
+    });
+  }
+
+  train() {
+
+    if(this.selectedAlgorithm == undefined) {
+      alert('Please select an algortithm type');
+      return;
+    }
+
+    this.selectedFeaturesList = [];
+    for (const key in this.selectedFeatures) {
+      if(this.selectedFeatures[key]) {
+        this.selectedFeaturesList.push(key);
+      }
+    }
+
+    if(this.selectedFeaturesList == undefined) {
+      alert('Please select at least one feature');
+      return;
+    }
+
+    if(this.selectedAlgorithm == 'clustering') {
+      if(this.clustersNumber < 1) {
+        alert('Please input a valid number of clusters');
+        return;
+      }
+      this.apiController.trainModel(this.selectedFeaturesList, this.clustersNumber, this.selectedAlgorithm).subscribe(res => {
+        this.trainModelResponse = res.message;
+      });
+    } else {
+      if(this.selectedTarget == undefined) {
+        alert('Please select target variable');
+        return;
+      }
+      this.apiController.trainModel(this.selectedFeaturesList, this.selectedTarget, this.selectedAlgorithm).subscribe(res => {
+        this.trainModelResponse = res.message;
+      });
+    }
+  }
+
    makePrediction() {
-    if(this.engineSize == undefined) {
-      alert('Please input a valid engine size value');
-      return;
-    }
+     let features: string[] = [];
+     for (const key in this.inputFeatures) {
+       if(this.inputFeatures[key]) {
+         features.push(this.inputFeatures[key]);
+       } else {
+         alert('Please do not leave empty inputs');
+         return;
+       }
+     }
 
-    if(this.cylinders == undefined) {
-      alert('Please input a valid cylinders value');
-      return;
-    }
+     if(this.selectedAlgorithmForPredicting == undefined) {
+       alert('Please select an algortithm type');
+       return;
+     }
 
-    if(this.fuelConsumption == undefined) {
-      alert('Please input a valid fuel consumption value');
-      return;
-    }
-
-    this.apiController.makePrediction(this.engineSize.toString(), this.cylinders.toString(), this.fuelConsumption.toString()).subscribe(res => {
-      console.log(res);
-      this.predictionResult = res;
+    this.apiController.makePrediction(features, this.selectedAlgorithmForPredicting).subscribe(res => {
+      this.predictionResult = res.predicted_value;
     });
    }
+
+   resetValues() {
+     this.isDatabaseDescriptionOpen = false;
+     this.isFirstColumnsOpen = false;
+     this.isLastColumnsOpen = false;
+     this.isValuesDescriptionOpen = false;
+     this.isDatasetCleaningOpen = false;
+     this.isTransformOpen = false;
+     this.isPreprocessingOpen = false;
+     this.isPredictionOpen = false;
+     this.firstRowsList = [];
+     this.lastRowsList = [];
+     this.descriptionsList = [];
+     this.predictionResult = '';
+     this.newDbRows = undefined;
+     this.newDbCols = undefined;
+     this.trainModelResponse = '';
+     this.descriptionHeaders = [];
+     this.selectedFeatures = {};
+     this.selectedFeaturesList = [];
+     this.inputFeatures = {};
+     this.selectedTarget = null;
+     this.selectedAlgorithm = 'regression';
+     this.selectedAlgorithmForPredicting = 'regression';
+     this.columnInfoList = [];
+   }
+
+  transform() {
+    this.apiController.transformUsingGet().subscribe(res => {
+      console.log(res);
+    });
+  }
 }
