@@ -1,201 +1,236 @@
 <div class="main-container">
 
   <header>
-    <h1 class="align-center">Linear Regression Model</h1>
-    <h2 class="align-center">Fuel Consumption</h2>
-    <h3 class="align-center">Vehicle Attributes and Emissions Dataset</h3>
+    <h1 class="align-center">Dataset Manager</h1>
   </header>
 
   <section class="section-container">
     <div class="section-header-container" (click)="isProjectDescriptionOpen = !isProjectDescriptionOpen">
-      <h2 class="align-left">Project description</h2>
+      <h2 class="align-left">Upload a dataset</h2>
       <img [src]="isProjectDescriptionOpen ? 'assets/images/arrow-up.png' : 'assets/images/arrow-down.png'" alt="arrow-icon" class="arrow-icon">
     </div>
 
     <div class="section-info-container" [@collapse]="!isProjectDescriptionOpen">
-      <p>The "Vehicle Attributes and Emissions Dataset" contains comprehensive information on various vehicles manufactured in the year 2000. It includes details such as make, model, vehicle class, engine size, cylinder count, transmission type, and fuel type. Additionally, the dataset provides ranges for fuel consumption and CO2 emissions, offering insights into the environmental impact of each vehicle. The dataset encompasses a wide range of vehicle types, from compact to mid-size, and includes both conventional and high-performance models. With this information, analysts and researchers can study trends in vehicle characteristics, fuel efficiency, and emissions . This dataset serves as a valuable resource for understanding the automotive landscape and informing discussions on environmental sustainability and transportation policies.</p>
-      <h3>The dataset has {{dbRows}} rows and {{dbCols}} columns.</h3>
+      <input type="file" (change)="onFileChange($event)">
+      <button (click)="uploadFile()">Upload</button>
+      <ng-container *ngIf="dbRows && dbCols">
+        <h3>File uploaded successfully.</h3>
+        <h3>The dataset has {{dbRows}} rows and {{dbCols}} columns.</h3>
+      </ng-container>
     </div>
   </section>
 
-  <section class="section-container">
-    <div class="section-header-container" (click)="isDatabaseDescriptionOpen = !isDatabaseDescriptionOpen">
-      <h2 class="align-left">Dataset description</h2>
-      <img [src]="isDatabaseDescriptionOpen ? 'assets/images/arrow-up.png' : 'assets/images/arrow-down.png'" alt="arrow-icon" class="arrow-icon">
-    </div>
-
-    <div class="section-info-container" [@collapse]="!isDatabaseDescriptionOpen">
-      <div class="inline-div">
-        <h3>Load the dataset description by clicking:</h3>
-        <button (click)="loadDatasetDescription()">Click me</button>
+  <ng-container *ngIf="dbRows && dbCols">
+    <section class="section-container">
+      <div class="section-header-container" (click)="isDatabaseDescriptionOpen = !isDatabaseDescriptionOpen">
+        <h2 class="align-left">Dataset description</h2>
+        <img [src]="isDatabaseDescriptionOpen ? 'assets/images/arrow-up.png' : 'assets/images/arrow-down.png'" alt="arrow-icon" class="arrow-icon">
       </div>
 
-      <div *ngIf="columnInfoList.length > 0" class="table-container">
-        <table>
-          <tr>
-            <th>Column name</th>
-            <th>Data type</th>
-          </tr>
-
-          <tr *ngFor="let columnInfoPair of columnInfoList">
-            <td>{{columnInfoPair.column_name}}</td>
-            <td>{{columnInfoPair.data_type}}</td>
-          </tr>
-        </table>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section-container">
-    <div class="section-header-container" (click)="isFirstColumnsOpen = !isFirstColumnsOpen">
-      <h2 class="align-left">See first rows</h2>
-      <img [src]="isFirstColumnsOpen ? 'assets/images/arrow-up.png' : 'assets/images/arrow-down.png'" alt="arrow-icon" class="arrow-icon">
-    </div>
-
-    <div class="section-info-container" [@collapse]="!isFirstColumnsOpen">
-      <div class="inline-div">
-        <input type="number" [(ngModel)]="rowsNumberForTop" placeholder="Rows number">
-        <button (click)="loadFirstRows()">Load</button>
-      </div>
-
-      <div *ngIf="firstRowsList.length > 0" class="table-container">
-        <table>
-          <tr>
-            <th>Year</th>
-            <th>Make</th>
-            <th>Model</th>
-            <th>Vehicle Class</th>
-            <th>Engine Size</th>
-            <th>Cylinders</th>
-            <th>Transmission</th>
-            <th>Fuel</th>
-            <th>Fuel Consumption</th>
-            <th>Coemissions</th>
-          </tr>
-
-          <tr *ngFor="let row of firstRowsList">
-            <td>{{row['Year']}}</td>
-            <td>{{row['MAKE']}}</td>
-            <td>{{row['MODEL']}}</td>
-            <td>{{row['VEHICLE CLASS']}}</td>
-            <td>{{row['ENGINE SIZE']}}</td>
-            <td>{{row['CYLINDERS']}}</td>
-            <td>{{row['TRANSMISSION']}}</td>
-            <td>{{row['FUEL']}}</td>
-            <td>{{row['FUEL CONSUMPTION']}}</td>
-            <td>{{row['COEMISSIONS ']}}</td>
-          </tr>
-        </table>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section-container">
-    <div class="section-header-container" (click)="isLastColumnsOpen = !isLastColumnsOpen">
-      <h2 class="align-left">See last rows</h2>
-      <img [src]="isLastColumnsOpen ? 'assets/images/arrow-up.png' : 'assets/images/arrow-down.png'" alt="arrow-icon" class="arrow-icon">
-    </div>
-
-    <div class="section-info-container" [@collapse]="!isLastColumnsOpen">
-      <div class="inline-div">
-        <input type="number" [(ngModel)]="rowsNumberForTail" placeholder="Rows number">
-        <button (click)="loadLastRows()">Load</button>
-      </div>
-
-      <div *ngIf="lastRowsList.length > 0" class="table-container">
-        <table>
-          <tr>
-            <th>Year</th>
-            <th>Make</th>
-            <th>Model</th>
-            <th>Vehicle Class</th>
-            <th>Engine Size</th>
-            <th>Cylinders</th>
-            <th>Transmission</th>
-            <th>Fuel</th>
-            <th>Fuel Consumption</th>
-            <th>Coemissions</th>
-          </tr>
-
-          <tr *ngFor="let row of lastRowsList">
-            <td>{{row['Year']}}</td>
-            <td>{{row['MAKE']}}</td>
-            <td>{{row['MODEL']}}</td>
-            <td>{{row['VEHICLE CLASS']}}</td>
-            <td>{{row['ENGINE SIZE']}}</td>
-            <td>{{row['CYLINDERS']}}</td>
-            <td>{{row['TRANSMISSION']}}</td>
-            <td>{{row['FUEL']}}</td>
-            <td>{{row['FUEL CONSUMPTION']}}</td>
-            <td>{{row['COEMISSIONS ']}}</td>
-          </tr>
-        </table>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section-container">
-    <div class="section-header-container" (click)="isValuesDescriptionOpen = !isValuesDescriptionOpen">
-      <h2 class="align-left">Values description</h2>
-      <img [src]="isValuesDescriptionOpen ? 'assets/images/arrow-up.png' : 'assets/images/arrow-down.png'" alt="arrow-icon" class="arrow-icon">
-    </div>
-
-    <div class="section-info-container" [@collapse]="!isValuesDescriptionOpen">
-      <div class="inline-div">
-        <h3>Load descriptions:</h3>
-        <button (click)="loadDescription()">Click me</button>
-      </div>
-
-      <div *ngIf="descriptionsList.length > 0" class="table-container">
-        <table>
-          <tr>
-            <th>Index</th>
-            <th>Year</th>
-            <th>Engine Size</th>
-            <th>Cylinders</th>
-            <th>Fuel Consumption</th>
-            <th>Coemissions</th>
-          </tr>
-
-          <tr *ngFor="let row of descriptionsList">
-            <td>{{row['index']}}</td>
-            <td>{{row['Year']}}</td>
-            <td>{{row['ENGINE SIZE']}}</td>
-            <td>{{row['CYLINDERS']}}</td>
-            <td>{{row['FUEL CONSUMPTION']}}</td>
-            <td>{{row['COEMISSIONS ']}}</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-container">
-    <div class="section-header-container" (click)="isPredictionOpen = !isPredictionOpen">
-      <h2 class="align-left">Make a prediction</h2>
-      <img [src]="isPredictionOpen ? 'assets/images/arrow-up.png' : 'assets/images/arrow-down.png'" alt="arrow-icon" class="arrow-icon">
-    </div>
-
-    <div class="section-info-container" [@collapse]="!isPredictionOpen">
-      <h3>Predict the CO2 emissions by inputting the engine size, number of cylinders and fuel consumption.</h3>
-      <div class="inline-div">
-        <div class="inputs-container">
-          <input type="number" [(ngModel)]="engineSize" placeholder="Engine Size">
-          <input type="number" [(ngModel)]="cylinders" placeholder="Cylinders">
-          <input type="number" [(ngModel)]="fuelConsumption" placeholder="Fuel Consumption">
+      <div class="section-info-container" [@collapse]="!isDatabaseDescriptionOpen">
+        <div class="inline-div">
+          <h3>Load the dataset description by clicking:</h3>
+          <button (click)="loadDatasetDescription()">Click me</button>
         </div>
-        <button (click)="makePrediction()">Predict</button>
+
+        <div *ngIf="columnInfoList.length > 0" class="table-container">
+          <table>
+            <tr>
+              <th>Column name</th>
+              <th>Data type</th>
+            </tr>
+
+            <tr *ngFor="let columnInfoPair of columnInfoList">
+              <td>{{columnInfoPair.column_name}}</td>
+              <td>{{columnInfoPair.data_type}}</td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section-container">
+      <div class="section-header-container" (click)="isFirstColumnsOpen = !isFirstColumnsOpen">
+        <h2 class="align-left">See first rows</h2>
+        <img [src]="isFirstColumnsOpen ? 'assets/images/arrow-up.png' : 'assets/images/arrow-down.png'" alt="arrow-icon" class="arrow-icon">
       </div>
 
-      <h2 *ngIf="predictionResult != ''">Prediction: {{predictionResult}}</h2>
-    </div>
-  </section>
+      <div class="section-info-container" [@collapse]="!isFirstColumnsOpen">
+        <div class="inline-div">
+          <input type="number" [(ngModel)]="rowsNumberForTop" placeholder="Rows number">
+          <button (click)="loadFirstRows()">Load</button>
+        </div>
 
-<!--  <footer class="footer-container">-->
-<!--    <h2 class="align-right">Victor-Stefan Iacob</h2>-->
-<!--  </footer>-->
+        <div *ngIf="firstRowsList.length > 0" class="table-container">
+          <table>
+            <tr>
+              <th *ngFor="let header of headers">{{header}}</th>
+            </tr>
+
+            <tr *ngFor="let row of firstRowsList">
+              <td *ngFor="let header of headers">{{row[header]}}</td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section-container">
+      <div class="section-header-container" (click)="isLastColumnsOpen = !isLastColumnsOpen">
+        <h2 class="align-left">See last rows</h2>
+        <img [src]="isLastColumnsOpen ? 'assets/images/arrow-up.png' : 'assets/images/arrow-down.png'" alt="arrow-icon" class="arrow-icon">
+      </div>
+
+      <div class="section-info-container" [@collapse]="!isLastColumnsOpen">
+        <div class="inline-div">
+          <input type="number" [(ngModel)]="rowsNumberForTail" placeholder="Rows number">
+          <button (click)="loadLastRows()">Load</button>
+        </div>
+
+        <div *ngIf="lastRowsList.length > 0" class="table-container">
+          <table>
+            <tr>
+              <th *ngFor="let header of headers">{{header}}</th>
+            </tr>
+
+            <tr *ngFor="let row of lastRowsList">
+              <td *ngFor="let header of headers">{{row[header]}}</td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section-container">
+      <div class="section-header-container" (click)="isValuesDescriptionOpen = !isValuesDescriptionOpen">
+        <h2 class="align-left">Values description</h2>
+        <img [src]="isValuesDescriptionOpen ? 'assets/images/arrow-up.png' : 'assets/images/arrow-down.png'" alt="arrow-icon" class="arrow-icon">
+      </div>
+
+      <div class="section-info-container" [@collapse]="!isValuesDescriptionOpen">
+        <div class="inline-div">
+          <h3>Load descriptions:</h3>
+          <button (click)="loadDescription()">Click me</button>
+        </div>
+
+        <div *ngIf="descriptionsList.length > 0" class="table-container">
+          <table>
+            <tr>
+              <th *ngFor="let header of descriptionHeaders">{{header}}</th>
+            </tr>
+
+            <tr *ngFor="let row of descriptionsList">
+              <td *ngFor="let header of descriptionHeaders">{{row[header]}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-container">
+      <div class="section-header-container" (click)="isDatasetCleaningOpen = !isDatasetCleaningOpen">
+        <h2 class="align-left">Dataset cleaning</h2>
+        <img [src]="isPredictionOpen ? 'assets/images/arrow-up.png' : 'assets/images/arrow-down.png'" alt="arrow-icon" class="arrow-icon">
+      </div>
+
+      <div class="section-info-container" [@collapse]="!isDatasetCleaningOpen">
+        <div class="inline-div">
+          <h3>Dataset cleaining:</h3>
+          <button (click)="cleanDataset()">Clean</button>
+        </div>
+        <ng-container *ngIf="newDbCols && newDbRows">
+          <h3>Before cleaning, the dataset had {{dbRows}} rows and {{dbCols}} cols.</h3>
+          <h3>After cleaning, the dataset has {{newDbRows}} rows and {{newDbCols}} cols.</h3>
+          <h3 *ngIf="dbRows == newDbRows && dbCols == newDbCols">The dataset does not have empty values.</h3>
+        </ng-container>
+      </div>
+    </section>
+
+    <section class="section-container">
+      <div class="section-header-container" (click)="isTransformOpen = !isTransformOpen">
+        <h2 class="align-left">Transofrm and normalize</h2>
+        <img [src]="isPredictionOpen ? 'assets/images/arrow-up.png' : 'assets/images/arrow-down.png'" alt="arrow-icon" class="arrow-icon">
+      </div>
+
+      <div class="section-info-container" [@collapse]="!isTransformOpen">
+        <button (click)="transform()">Transform</button>
+      </div>
+    </section>
+
+    <section class="section-container">
+      <div class="section-header-container" (click)="isPreprocessingOpen = !isPreprocessingOpen">
+        <h2 class="align-left">Preprocessing and training</h2>
+        <img [src]="isPredictionOpen ? 'assets/images/arrow-up.png' : 'assets/images/arrow-down.png'" alt="arrow-icon" class="arrow-icon">
+      </div>
+
+      <div class="section-info-container" [@collapse]="!isPreprocessingOpen">
+        <div class="preprocessing-selection-container">
+          <div class="selection-container">
+            <h3>Select the features you want to train:</h3>
+            <div class="inline-div" *ngFor="let feature of headers">
+              <input type="checkbox" id="{{ feature }}" name="{{ feature }}" [(ngModel)]="selectedFeatures[feature]">
+              <label for="{{ feature }}">{{ feature }}</label>
+            </div>
+          </div>
+
+          <div class="selection-container">
+            <h3>Select AI Algorithm Type:</h3>
+            <select [(ngModel)]="selectedAlgorithm">
+              <option value="regression">Regression</option>
+              <option value="classification">Classification</option>
+              <option value="clustering">Clustering</option>
+            </select>
+          </div>
+
+          <div *ngIf="selectedAlgorithm != 'clustering'" class="selection-container">
+            <h3>Select Target Attribute:</h3>
+            <select [(ngModel)]="selectedTarget">
+              <option *ngFor="let feature of headers" [value]="feature">{{ feature }}</option>
+            </select>
+          </div>
+
+          <div *ngIf="selectedAlgorithm == 'clustering'">
+            <h3>Input the number of clusters:</h3>
+            <input [(ngModel)]="clustersNumber">
+          </div>
+
+        </div>
+
+        <button (click)="train()" style="margin-bottom: 25px">Train</button>
+
+        <h3 *ngIf="trainModelResponse != ''">{{trainModelResponse}}</h3>
+      </div>
+    </section>
+
+    <section class="section-container">
+      <div class="section-header-container" (click)="isPredictionOpen = !isPredictionOpen">
+        <h2 class="align-left">Make a prediction</h2>
+        <img [src]="isPredictionOpen ? 'assets/images/arrow-up.png' : 'assets/images/arrow-down.png'" alt="arrow-icon" class="arrow-icon">
+      </div>
+
+      <div class="section-info-container" [@collapse]="!isPredictionOpen">
+        <h3>Predict the outcome by inputting features selected in the last step.</h3>
+        <div class="inline-div">
+          <div class="inputs-container">
+            <input *ngFor="let feature of selectedFeaturesList" placeholder="{{feature}}" [(ngModel)]="inputFeatures[feature]">
+          </div>
+          <div class="selection-container">
+            <h3>Select AI Algorithm Type:</h3>
+            <select [(ngModel)]="selectedAlgorithmForPredicting">
+              <option value="regression">Regression</option>
+              <option value="classification">Classification</option>
+              <option value="clustering">Clustering</option>
+            </select>
+          </div>
+          <button (click)="makePrediction()">Predict</button>
+        </div>
+
+        <h2 *ngIf="predictionResult != ''">Prediction: {{predictionResult}}</h2>
+      </div>
+    </section>
+  </ng-container>
 
 </div>

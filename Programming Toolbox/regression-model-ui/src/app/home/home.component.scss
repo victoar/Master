@@ -64,3 +64,17 @@
   display: flex;
   flex-direction: column;
 }
+
+.preprocessing-selection-container {
+  display: flex;
+  flex-direction: row;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    margin-bottom: 25px  ;
+  }
+}
+
+.selection-container {
+  flex: 0 0 33.3%;
+}

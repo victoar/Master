@@ -11,6 +11,12 @@ export class ApiControllerService {
 
   private apiUrl = 'http://localhost:5000/api/';
 
+  uploadDataset(file): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<any>(this.apiUrl + 'upload', formData);
+  }
+
   getDatabaseData(): Observable<any> {
     return this.http.get<any>(this.apiUrl + 'shape');
   }
@@ -31,7 +37,19 @@ export class ApiControllerService {
     return this.http.get<any>(this.apiUrl + 'describe');
   }
 
-  makePrediction(engineSize: string, cylinders: string, fuelConsumption: string): Observable<any> {
-    return this.http.get<any>(this.apiUrl + 'predict/' + engineSize + '/' + cylinders + '/' + fuelConsumption);
+  cleanDatasetUsingGet(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + 'cleaning');
+  }
+
+  trainModel(features, target, modelType) {
+    return this.http.post<any>(this.apiUrl + 'train', {features: features, target: target, model_type: modelType});
+  }
+
+  makePrediction(features: string[], modelType): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'predict', {features: features, model_type: modelType});
+  }
+
+  transformUsingGet(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + 'transform');
   }
 }

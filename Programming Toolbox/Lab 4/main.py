@@ -9,117 +9,125 @@ Original file is located at
 # Regression
 """
 
-import numpy as np
+# import numpy as np
+# import pandas as pd
+#
+# df = pd.read_csv('FuelConsumption (1).csv')
+# print(df)
+#
+# df.head(10)
+#
+# df.info()
+# df.describe()
+#
+# import matplotlib.pyplot as plt
+# data = df[['ENGINE SIZE','CYLINDERS','FUEL CONSUMPTION','COEMISSIONS ']]
+# data.hist(color='red')
+# plt.show()
+#
+# import seaborn as sns
+# pivot_df = df.pivot_table(index='MODEL', columns='MAKE', values='COEMISSIONS ')
+#
+# # Create the heatmap
+# plt.figure(figsize=(10, 6))
+# sns.heatmap(pivot_df, cmap="YlGnBu", annot=True, fmt=".0f", linewidths=1)
+# plt.title('CO2 Emissions by Make and Model')
+# plt.xlabel('Make')
+# plt.ylabel('Model')
+# plt.show()
+#
+# vehicle_class_counts = df['VEHICLE CLASS'].value_counts()
+#
+# # Print the categories and their counts
+# print("Categories in Vehicle Class and their counts:")
+# for category, count in vehicle_class_counts.items():
+#     print(f"{category}: {count} entries")
+#
+# avg_co2_by_class = df.groupby('VEHICLE CLASS')['COEMISSIONS '].mean().sort_values()
+#
+# # Create a bar plot
+# plt.figure(figsize=(12, 6))
+# avg_co2_by_class.plot(kind='bar', color='skyblue')
+# plt.title('Average CO2 Emissions by Vehicle Class')
+# plt.xlabel('Vehicle Class')
+# plt.ylabel('Average CO2 Emissions')
+# plt.grid(axis='y', linestyle='--', alpha=0.7)
+# plt.tight_layout()
+# plt.show()
+#
+# from sklearn.linear_model import LinearRegression
+# from sklearn.metrics import r2_score
+# from sklearn.model_selection import train_test_split
+#
+# model=LinearRegression()
+# x=data[['ENGINE SIZE','CYLINDERS','FUEL CONSUMPTION']]
+# y=data[['COEMISSIONS ']]
+#
+# xtrain, xtest, ytrain, ytest = train_test_split(x,y, test_size = 0.2,random_state=42)
+# model.fit(xtrain,ytrain)
+#
+# # Make predictions
+# pre_train=model.predict(xtrain)
+# r2score=r2_score(ytrain,pre_train)
+# print("Accuracy of linear regression on train data is::",r2score*100,"%")
+#
+# pre_test=model.predict(xtest)
+# r2score=r2_score(ytest,pre_test)
+# print("Accuracy of linear regression on test data is::",r2score*100,"%")
+#
+# # Example
+# engine_size = 2.0
+# cylinders = 4
+# fuel_consumption = 11.0
+#
+# # Predict CO2 emissions using the trained model
+# predicted_co2_emissions = model.predict([[engine_size, cylinders, fuel_consumption]])
+#
+# print("Predicted CO2 emissions:", predicted_co2_emissions[0])
+#
+# plt.scatter(xtest['ENGINE SIZE'], ytest, color='blue', label='Actual')
+# # Plot the predicted CO2 emissions for the chosen values
+# plt.scatter(engine_size, predicted_co2_emissions, color='red', label='Predicted')
+# plt.xlabel('Engine Size')
+# plt.ylabel('CO2 Emissions')
+# plt.title('Actual vs. Predicted CO2 Emissions')
+# plt.legend()
+# plt.show()
+#
+# from mpl_toolkits.mplot3d import Axes3D
+#
+# fig = plt.figure(figsize=(12, 8))
+# ax = fig.add_subplot(111, projection='3d')
+#
+# # Plot actual data points
+# ax.scatter(xtest['ENGINE SIZE'], xtest['FUEL CONSUMPTION'], ytest, color='blue', label='Actual')
+#
+# # Plot the predicted CO2 emissions for the chosen values
+# ax.scatter(engine_size, fuel_consumption, predicted_co2_emissions, color='red', label='Predicted')
+#
+# ax.set_xlabel('Engine Size')
+# ax.set_ylabel('Fuel Consumption')
+# ax.set_zlabel('CO2 Emissions')
+# ax.set_title('Actual vs. Predicted CO2 Emissions')
+# ax.legend()
+#
+# plt.show()
+#
+# from sklearn.metrics import mean_absolute_error
+#
+# training_set_MAE = mean_absolute_error(ytrain, pre_train)
+# test_set_MAE = mean_absolute_error(ytest, pre_test)
+#
+# print('Training set MAE', training_set_MAE)
+# print('Test set MAE', test_set_MAE)
+
+import joblib
+
+model = joblib.load('model.pkl')
+
 import pandas as pd
-
 df = pd.read_csv('FuelConsumption (1).csv')
-print(df)
 
-df.head(10)
-
-df.info()
-df.describe()
-
-import matplotlib.pyplot as plt
-data = df[['ENGINE SIZE','CYLINDERS','FUEL CONSUMPTION','COEMISSIONS ']]
-data.hist(color='red')
-plt.show()
-
-import seaborn as sns
-pivot_df = df.pivot_table(index='MODEL', columns='MAKE', values='COEMISSIONS ')
-
-# Create the heatmap
-plt.figure(figsize=(10, 6))
-sns.heatmap(pivot_df, cmap="YlGnBu", annot=True, fmt=".0f", linewidths=1)
-plt.title('CO2 Emissions by Make and Model')
-plt.xlabel('Make')
-plt.ylabel('Model')
-plt.show()
-
-vehicle_class_counts = df['VEHICLE CLASS'].value_counts()
-
-# Print the categories and their counts
-print("Categories in Vehicle Class and their counts:")
-for category, count in vehicle_class_counts.items():
-    print(f"{category}: {count} entries")
-
-avg_co2_by_class = df.groupby('VEHICLE CLASS')['COEMISSIONS '].mean().sort_values()
-
-# Create a bar plot
-plt.figure(figsize=(12, 6))
-avg_co2_by_class.plot(kind='bar', color='skyblue')
-plt.title('Average CO2 Emissions by Vehicle Class')
-plt.xlabel('Vehicle Class')
-plt.ylabel('Average CO2 Emissions')
-plt.grid(axis='y', linestyle='--', alpha=0.7)
-plt.tight_layout()
-plt.show()
-
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score
-from sklearn.model_selection import train_test_split
-
-model=LinearRegression()
-x=data[['ENGINE SIZE','CYLINDERS','FUEL CONSUMPTION']]
-y=data[['COEMISSIONS ']]
-
-xtrain, xtest, ytrain, ytest = train_test_split(x,y, test_size = 0.2,random_state=42)
-model.fit(xtrain,ytrain)
-
-# Make predictions
-pre_train=model.predict(xtrain)
-r2score=r2_score(ytrain,pre_train)
-print("Accuracy of linear regression on train data is::",r2score*100,"%")
-
-pre_test=model.predict(xtest)
-r2score=r2_score(ytest,pre_test)
-print("Accuracy of linear regression on test data is::",r2score*100,"%")
-
-# Example
-engine_size = 2.0
-cylinders = 4
-fuel_consumption = 11.0
-
-# Predict CO2 emissions using the trained model
-predicted_co2_emissions = model.predict([[engine_size, cylinders, fuel_consumption]])
-
-print("Predicted CO2 emissions:", predicted_co2_emissions[0])
-
-plt.scatter(xtest['ENGINE SIZE'], ytest, color='blue', label='Actual')
-# Plot the predicted CO2 emissions for the chosen values
-plt.scatter(engine_size, predicted_co2_emissions, color='red', label='Predicted')
-plt.xlabel('Engine Size')
-plt.ylabel('CO2 Emissions')
-plt.title('Actual vs. Predicted CO2 Emissions')
-plt.legend()
-plt.show()
-
-from mpl_toolkits.mplot3d import Axes3D
-
-fig = plt.figure(figsize=(12, 8))
-ax = fig.add_subplot(111, projection='3d')
-
-# Plot actual data points
-ax.scatter(xtest['ENGINE SIZE'], xtest['FUEL CONSUMPTION'], ytest, color='blue', label='Actual')
-
-# Plot the predicted CO2 emissions for the chosen values
-ax.scatter(engine_size, fuel_consumption, predicted_co2_emissions, color='red', label='Predicted')
-
-ax.set_xlabel('Engine Size')
-ax.set_ylabel('Fuel Consumption')
-ax.set_zlabel('CO2 Emissions')
-ax.set_title('Actual vs. Predicted CO2 Emissions')
-ax.legend()
-
-plt.show()
-
-from sklearn.metrics import mean_absolute_error
-
-training_set_MAE = mean_absolute_error(ytrain, pre_train)
-test_set_MAE = mean_absolute_error(ytest, pre_test)
-
-print('Training set MAE', training_set_MAE)
-print('Test set MAE', test_set_MAE)
 
 
 from flask import Flask, jsonify
